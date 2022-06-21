@@ -1,22 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import CenterView from '@/views/CenterView'
+import SearchView from '@/views/SearchView'
+import CinemasView from '@/views/CinemasView'
+import DetailView from '@/views/DetailView'
+import FilmsView from '@/views/FilmsView'
+import OrderView from '@/views/OrderView'
+import LoginView from '@/views/LoginView'
+import ComingSoon from '@/views/Films/ComingSoon'
+import NowPlaying from '@/views/Films/NowPlaying'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/center',
+    component: CenterView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/cinemas',
+    component: CinemasView
+  },
+  {
+    path: '/cinemas/search',
+    component: SearchView
+  },
+  {
+    path: '/login',
+    component: LoginView
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: DetailView
+  },
+  {
+    path: '/order',
+    component: OrderView
+  },
+  {
+    path: '/city',
+    component: () => import('@/views/CityView')
+  },
+  {
+    path: '/films',
+    component: FilmsView,
+    children: [
+      {
+        path: '/films/nowplaying',
+        component: NowPlaying
+      },
+      {
+        path: '/films/comingsoon',
+        component: ComingSoon
+      },
+      {
+        path: '/films',
+        redirect: '/films/nowplaying'
+      }
+    ]
+  },
+  {
+    path: '*',
+    redirect: '/films/nowplaying'
   }
 ]
 
