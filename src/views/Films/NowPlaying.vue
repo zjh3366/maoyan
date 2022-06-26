@@ -52,8 +52,9 @@ export default {
           'X-Host': 'mall.film-ticket.film.list'
         }
       }).then((res) => {
-        // console.log(res.data.data.films)
+        console.log(res.data.data.films)
         this.datalist = [...this.datalist, ...res.data.data.films]
+        this.loading = false
       })
     },
     handleChangePage (id) {

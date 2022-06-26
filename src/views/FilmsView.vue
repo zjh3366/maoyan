@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:8081/banner.json').then(res => {
+    axios.get('/banner.json').then(res => {
       // console.log(res.data)
       this.datalist = res.data.banner
       // console.log(this.datalist)
